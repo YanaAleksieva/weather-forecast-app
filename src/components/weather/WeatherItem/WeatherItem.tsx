@@ -1,12 +1,19 @@
 import classes from "./WeatherItem.module.css";
 
-const WeatherItem = () => {
+type WeatherItemProps = {
+  date: string;
+  tempMin: string;
+  tempMax: string;
+  weatherDesc: string;
+};
+
+const WeatherItem = (props: WeatherItemProps) => {
   return (
     <li className={classes.item}>
-      <time>15:44PM</time>
-      <div>15</div>
-      <div>17</div>
-      <div>cloudy</div>
+      <div>{props.date}</div>
+      <div>{props.tempMin}</div>
+      <div>{props.tempMax}</div>
+      <div>{props.weatherDesc}</div>
     </li>
   );
 };

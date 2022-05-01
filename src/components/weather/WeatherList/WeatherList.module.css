@@ -1,4 +1,4 @@
-.list {
+.container {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -12,6 +12,10 @@
   border-radius: 10px;
   box-shadow: 0 0px 30px rgb(54, 55, 58);
   user-select: none;
+}
+
+.list {
+
 }
 
 .list::before {
