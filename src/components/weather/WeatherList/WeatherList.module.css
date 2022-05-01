@@ -10,7 +10,7 @@
   height: 90%;
   max-height: 40rem;
   border-radius: 10px;
-  box-shadow: 0 0px 30px var(--dark-gray);
+  box-shadow: 0 0px 30px var(--dark-grey);
   user-select: none;
 }
 
