@@ -11,16 +11,9 @@ const WeatherInfo = () => {
   const [inputFilter, setInputFilter] = useState("Sofia");
 
   const { data, error } = useSWR(
-    `https://api.openweathermap.org/data/2.5/forecast?q=Sofia&appid=${process.env.REACT_APP_WEATHER_KEY}`,
+    `https://api.openweathermap.org/data/2.5/onecall?lat=41.9102416&lon=12.2557995&exclude=alerts&appid=${process.env.REACT_APP_WEATHER_KEY}&units=metric`,
     fetcher
   );
-
-  if (data) {
-    console.log(data);
-  }
-  if (error) {
-    console.log(error);
-  }
 
   function onFilterHandler(filteredCity: string) {
     setInputFilter(filteredCity);
@@ -32,7 +25,15 @@ const WeatherInfo = () => {
     <Fragment>
       <CurrentWeather />
       <SearchItem onFilter={onFilterHandler} />
-      <WeatherList />
+      {data ? (
+        <WeatherList weatherData={data.daily.slice(0, 5)} location={data.timezone} />
+      ) : error ? (
+        <Fragment>
+          <p>No data available</p>
+        </Fragment>
+      ) : (
+        <p>Loading</p>
+      )}
     </Fragment>
   );
 };
