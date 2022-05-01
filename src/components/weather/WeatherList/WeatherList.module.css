@@ -1,0 +1,20 @@
+.list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 3rem auto;
+  padding: 1rem;
+  width: 90%;
+  max-width: 40rem;
+  height: 90%;
+  max-height: 40rem;
+  border-radius: 10px;
+  box-shadow: 0 0px 30px rgb(54, 55, 58);
+  user-select: none;
+}
+
+.list::before {
+  content: "";
+  mix-blend-mode: difference;
+}

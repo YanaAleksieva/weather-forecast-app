@@ -1,14 +1,18 @@
-import React from "react";
+import Layout from "./components/layout/Layout";
+import Heading from "./components/ui/Heading";
+import SearchItem from "./components/ui/SearchItem";
+import WeatherList from "./components/weather/WeatherList";
 
 import "./App.css";
-import Heading from "./components/Heading";
-import SearchItem from "./components/SearchItem";
 
 function App() {
   return (
     <div className="App">
       <Heading>Weather App</Heading>
-      <SearchItem />
+      <Layout>
+        <SearchItem />
+        <WeatherList />
+      </Layout>
     </div>
   );
 }
