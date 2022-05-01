@@ -1,13 +1,53 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Open+Sans:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600&display=swap");
+
+* {
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root {
+  --primary-background: rgb(219, 219, 219);
+  --primary-yellow: #b99c06;
+  --lighter-yellow: #f2c800;
+  --primary-neutral: #EFB380;
+  --primary-blue: rgb(68, 83, 97);
+  --dark-gray: rgb(87, 87, 87);
+}
+
+html,
+body {
+  margin: 0;
+  font-size: 1rem;
+  font-family: "Raleway", "Open Sans", "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  color: #414141;
+  background-color: var(--primary-background);
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Lato", sans-serif;
+  color: black;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.center {
+  margin: auto;
+  text-align: center;
 }

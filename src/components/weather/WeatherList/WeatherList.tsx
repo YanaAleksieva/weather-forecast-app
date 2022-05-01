@@ -5,6 +5,7 @@ import classes from "./WeatherList.module.css";
 
 const WeatherList = () => {
   const weatherData = [
+    { date: "Date", tempMin: "Min Temp", tempMax: "Max Temp", weatherDesc: "Weather" },
     { date: "12/03/2020", tempMin: "15", tempMax: "17", weatherDesc: "cloudy" },
     { date: "12/03/2020", tempMin: "15", tempMax: "17", weatherDesc: "cloudy" },
     { date: "12/03/2020", tempMin: "15", tempMax: "17", weatherDesc: "cloudy" },
@@ -14,7 +15,7 @@ const WeatherList = () => {
 
   return (
     <div className={classes.container}>
-      <Heading>Sofia</Heading>
+      <Heading>5-day forecast for: Sofia</Heading>
       <ul className={classes.list}>
         {weatherData.map((day) => (
           <WeatherItem

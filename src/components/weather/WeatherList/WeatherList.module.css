@@ -3,14 +3,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 3rem auto;
+  margin: 3rem auto auto 3rem;
   padding: 1rem;
   width: 90%;
   max-width: 40rem;
   height: 90%;
   max-height: 40rem;
   border-radius: 10px;
-  box-shadow: 0 0px 30px rgb(54, 55, 58);
+  box-shadow: 0 0px 30px var(--dark-gray);
   user-select: none;
 }
 
