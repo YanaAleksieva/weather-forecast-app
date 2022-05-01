@@ -7,10 +7,10 @@ const WeatherList = () => {
   const weatherData = [
     { date: "Date", tempMin: "Min Temp", tempMax: "Max Temp", weatherDesc: "Weather" },
     { date: "12/03/2020", tempMin: "15", tempMax: "17", weatherDesc: "cloudy" },
-    { date: "12/03/2020", tempMin: "15", tempMax: "17", weatherDesc: "cloudy" },
-    { date: "12/03/2020", tempMin: "15", tempMax: "17", weatherDesc: "cloudy" },
-    { date: "12/03/2020", tempMin: "15", tempMax: "17", weatherDesc: "cloudy" },
-    { date: "12/03/2020", tempMin: "15", tempMax: "17", weatherDesc: "cloudy" },
+    { date: "13/03/2020", tempMin: "15", tempMax: "17", weatherDesc: "cloudy" },
+    { date: "14/03/2020", tempMin: "15", tempMax: "17", weatherDesc: "cloudy" },
+    { date: "15/03/2020", tempMin: "15", tempMax: "17", weatherDesc: "cloudy" },
+    { date: "16/03/2020", tempMin: "15", tempMax: "17", weatherDesc: "cloudy" },
   ];
 
   return (
