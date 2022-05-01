@@ -1,0 +1,22 @@
+.btn {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  display: inline-flex;
+  justify-content: center;
+  margin: 12px;
+  padding: 12px 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 700;
+  border: 1px solid white;
+  border-radius: 999999px;
+  background-color: black;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:hover {
+  color: #EFB380;
+}
