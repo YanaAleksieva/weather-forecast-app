@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import useSWR from "swr";
 
 import SearchItem from "../components/ui/SearchItem";
@@ -8,6 +8,8 @@ import CurrentWeather from "../components/weather/CurrentWeather";
 const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
 const WeatherInfo = () => {
+  const [inputFilter, setInputFilter] = useState("Sofia");
+
   const { data, error } = useSWR(
     `https://api.openweathermap.org/data/2.5/forecast?q=Sofia&appid=${process.env.REACT_APP_WEATHER_KEY}`,
     fetcher
@@ -17,13 +19,19 @@ const WeatherInfo = () => {
     console.log(data);
   }
   if (error) {
-      console.log(error);
-  };
+    console.log(error);
+  }
+
+  function onFilterHandler(filteredCity: string) {
+    setInputFilter(filteredCity);
+  }
+
+  console.log(inputFilter);
 
   return (
     <Fragment>
       <CurrentWeather />
-      <SearchItem />
+      <SearchItem onFilter={onFilterHandler} />
       <WeatherList />
     </Fragment>
   );

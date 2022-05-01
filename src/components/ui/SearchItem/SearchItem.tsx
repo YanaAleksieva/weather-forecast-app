@@ -3,11 +3,15 @@ import ButtonItem from "../Button";
 
 import classes from "./SearchItem.module.css";
 
-const SearchItem = () => {
+type SearchItemProps = {
+  onFilter: (filteredCity: string) => void;
+};
+
+const SearchItem = (props: SearchItemProps) => {
   const [value, setValue] = useState("Sofia");
 
   const onClickHandler = () => {
-    console.log(value);
+    props.onFilter(value);
     setValue("");
   };
 
