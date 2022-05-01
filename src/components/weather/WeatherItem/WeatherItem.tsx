@@ -8,12 +8,20 @@ type WeatherItemProps = {
 };
 
 const WeatherItem = (props: WeatherItemProps) => {
+  const { date, weatherDesc, tempMin, tempMax } = props;
+
+  const humanReadableDate = new Date(+date * 1000).toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
   return (
     <li className={classes.item}>
-      <div>{props.date}</div>
-      <div>{props.tempMin}</div>
-      <div>{props.tempMax}</div>
-      <div>{props.weatherDesc}</div>
+      <div>{humanReadableDate}</div>
+      <div>{Math.floor(+tempMin)}</div>
+      <div>{Math.floor(+tempMax)}</div>
+      <div>{weatherDesc}</div>
     </li>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ButtonItem from "../Button";
 
 import classes from "./SearchItem.module.css";
