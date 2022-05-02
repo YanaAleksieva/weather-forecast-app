@@ -4,11 +4,6 @@ By default, forecast for Sofia, Bulgaria is shown.
 
 App takes your geolocation and displays temperature, sunrise and sunset expected.
 
-
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Requirements to run
 
 ### Add .env file
