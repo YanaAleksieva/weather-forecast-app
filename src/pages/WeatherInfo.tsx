@@ -8,43 +8,40 @@ import { useWeatherInfo, useCityLocation } from "../helpers/api-utils";
 
 const WeatherInfo = () => {
   const [inputFilter, setInputFilter] = useState("Sofia, BG");
-  const [geolocation, setGeolocation] = useState<string[]>([]);
+  const [geolocation, setGeolocation] = useState<GeolocationCoordinates | undefined>(undefined);
 
   function onFilterHandler(filteredCity: string) {
     setInputFilter(filteredCity);
   }
 
   const cityArray = inputFilter.split(",");
-  console.log(cityArray);
 
   const cityData = useCityLocation({
     city: cityArray[0],
     country: cityArray[1],
   });
 
-  console.log(cityData);
-
   const weatherData = useWeatherInfo({
-    lat: cityData.data[0],
-    lon: cityData.data[1],
+    lat: cityData.data?.[0].lat,
+    lon: cityData.data?.[0].lon,
   });
 
   useEffect(() => {
     getLocation()
-      .then((result) => setGeolocation(result))
+      .then((result) => setGeolocation(result.coords))
       .catch((err) => {
         console.error(err.message);
       });
   }, []);
 
   const currentWeatherData = useWeatherInfo({
-    lat: geolocation[0],
-    lon: geolocation[1],
+    lat: geolocation?.latitude,
+    lon: geolocation?.longitude,
   });
 
   return (
     <Fragment>
-      {currentWeatherData.data ? (
+      {isWeatherDataAvailable(currentWeatherData.data) ? (
         <CurrentWeather
           weatherData={currentWeatherData.data.current}
           location={currentWeatherData.data.timezone}
@@ -57,7 +54,7 @@ const WeatherInfo = () => {
         <p>Loading</p>
       )}
       <SearchItem onFilter={onFilterHandler} />
-      {weatherData.data ? (
+      {isWeatherDataAvailable(weatherData.data) ? (
         <WeatherList
           weatherData={weatherData.data.daily.slice(0, 5)}
           location={weatherData.data.timezone}
@@ -72,5 +69,9 @@ const WeatherInfo = () => {
     </Fragment>
   );
 };
+
+function isWeatherDataAvailable(data: any) {
+  return data !== undefined && data.cod === undefined
+}
 
 export default WeatherInfo;
