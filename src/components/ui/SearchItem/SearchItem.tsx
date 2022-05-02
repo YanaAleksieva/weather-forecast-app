@@ -1,6 +1,5 @@
 import { useState } from "react";
 import ButtonItem from "../Button";
-import DescriptionItem from "../DescriptionItem";
 
 import classes from "./SearchItem.module.css";
 

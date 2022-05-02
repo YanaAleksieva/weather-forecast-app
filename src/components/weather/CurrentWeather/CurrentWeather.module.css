@@ -28,3 +28,9 @@
   padding: 16px;
   isolation: isolate;
 }
+
+.row {
+  display: flex;
+  padding: 2px;
+  gap: 16px;
+}
