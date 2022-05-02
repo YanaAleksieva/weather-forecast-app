@@ -8,7 +8,7 @@ type SearchItemProps = {
 };
 
 const SearchItem = (props: SearchItemProps) => {
-  const [value, setValue] = useState("Sofia");
+  const [value, setValue] = useState("Sofia, BG");
 
   const onClickHandler = () => {
     props.onFilter(value);

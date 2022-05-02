@@ -1,26 +1,33 @@
 import { Fragment, useState, useEffect } from "react";
-import useSWR from "swr";
 
 import SearchItem from "../components/ui/SearchItem";
 import WeatherList from "../components/weather/WeatherList";
 import CurrentWeather from "../components/weather/CurrentWeather";
 import { getLocation } from "../helpers/geo-coordinates";
-import { useWeatherInfo } from "../helpers/api-utils";
-
-const fetcher = (url: string) => fetch(url).then((r) => r.json());
+import { useWeatherInfo, useCityLocation } from "../helpers/api-utils";
 
 const WeatherInfo = () => {
-  const [inputFilter, setInputFilter] = useState("Sofia");
+  const [inputFilter, setInputFilter] = useState("Sofia, BG");
   const [geolocation, setGeolocation] = useState<string[]>([]);
-
-  const { data, error } = useSWR(
-    `https://api.openweathermap.org/data/2.5/onecall?lat=41.9102416&lon=12.2557995&exclude=alerts&appid=${process.env.REACT_APP_WEATHER_KEY}&units=metric`,
-    fetcher
-  );
 
   function onFilterHandler(filteredCity: string) {
     setInputFilter(filteredCity);
   }
+
+  const cityArray = inputFilter.split(",");
+  console.log(cityArray);
+
+  const cityData = useCityLocation({
+    city: cityArray[0],
+    country: cityArray[1],
+  });
+
+  console.log(cityData);
+
+  const weatherData = useWeatherInfo({
+    lat: cityData.data[0],
+    lon: cityData.data[1],
+  });
 
   useEffect(() => {
     getLocation()
@@ -37,21 +44,25 @@ const WeatherInfo = () => {
 
   return (
     <Fragment>
-      {currentWeatherData ? (
+      {currentWeatherData.data ? (
         <CurrentWeather
-          weatherData={currentWeatherData.current}
-          location={currentWeatherData.timezone}
+          weatherData={currentWeatherData.data.current}
+          location={currentWeatherData.data.timezone}
         />
+      ) : currentWeatherData.error ? (
+        <Fragment>
+          <p>No data available</p>
+        </Fragment>
       ) : (
         <p>Loading</p>
       )}
       <SearchItem onFilter={onFilterHandler} />
-      {data ? (
+      {weatherData.data ? (
         <WeatherList
-          weatherData={data.daily.slice(0, 5)}
-          location={data.timezone}
+          weatherData={weatherData.data.daily.slice(0, 5)}
+          location={weatherData.data.timezone}
         />
-      ) : error ? (
+      ) : weatherData.error ? (
         <Fragment>
           <p>No data available</p>
         </Fragment>

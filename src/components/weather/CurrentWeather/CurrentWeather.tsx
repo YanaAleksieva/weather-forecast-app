@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Heading from "../../ui/Heading";
 
 import classes from "./CurrentWeather.module.css";
@@ -27,31 +28,41 @@ const CurrentWeather = (props: CurrentWeatherProps) => {
   const { weatherData, location } = props;
 
   return (
-    <div className={classes.list}>
-      <Heading>Current Weather: {location}</Heading>
-      <div className={classes.item}>
-        <div className={classes.row}>
-          <div>Temperature: </div>
-          <div>{Math.floor(weatherData.temp)}</div>
-        </div>
-        <div className={classes.row}>
-          <div>Weather: </div>
-          <div>{weatherData.weather[0].description}</div>
-        </div>
-        <div className={classes.row}>
-          <div>Sunrise:</div>
-          <div>
-            {new Date(weatherData.sunrise * 1000).toLocaleTimeString("en-US")}
+    <Fragment>
+      {weatherData ? (
+        <div className={classes.list}>
+          <Heading>Current Weather: {location}</Heading>
+          <div className={classes.item}>
+            <div className={classes.row}>
+              <div>Temperature: </div>
+              <div>{Math.floor(weatherData.temp)}</div>
+            </div>
+            <div className={classes.row}>
+              <div>Weather: </div>
+              <div>{weatherData.weather[0].description}</div>
+            </div>
+            <div className={classes.row}>
+              <div>Sunrise:</div>
+              <div>
+                {new Date(weatherData.sunrise * 1000).toLocaleTimeString(
+                  "en-US"
+                )}
+              </div>
+            </div>
+            <div className={classes.row}>
+              <div>Sunset:</div>
+              <div>
+                {new Date(weatherData.sunset * 1000).toLocaleTimeString(
+                  "en-US"
+                )}
+              </div>
+            </div>
           </div>
         </div>
-        <div className={classes.row}>
-          <div>Sunset:</div>
-          <div>
-            {new Date(weatherData.sunset * 1000).toLocaleTimeString("en-US")}
-          </div>
-        </div>
-      </div>
-    </div>
+      ) : (
+        <p>Loading</p>
+      )}
+    </Fragment>
   );
 };
 

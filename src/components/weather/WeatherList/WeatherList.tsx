@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import DescriptionItem from "../../ui/DescriptionItem";
 import Heading from "../../ui/Heading";
 import WeatherItem from "../WeatherItem";
@@ -10,27 +11,35 @@ type WeatherListProps = {
 };
 
 const WeatherList = (props: WeatherListProps) => {
+  const { weatherData, location } = props;
+
   return (
-    <div className={classes.container}>
-      <Heading>5-day forecast for Timezone: {props.location}</Heading>
-      <DescriptionItem>
-        <div>Date</div>
-        <div>Temp Min</div>
-        <div>Temp Max</div>
-        <div>Weather</div>
-      </DescriptionItem>
-      <ul className={classes.list}>
-        {props.weatherData.map((day) => (
-          <WeatherItem
-            key={day.dt}
-            date={day.dt}
-            weatherDesc={day.weather[0].description}
-            tempMin={day.temp.min}
-            tempMax={day.temp.max}
-          />
-        ))}
-      </ul>
-    </div>
+    <Fragment>
+      {weatherData ? (
+        <div className={classes.container}>
+          <Heading>5-day forecast for Timezone: {location}</Heading>
+          <DescriptionItem>
+            <div>Date</div>
+            <div>Temp Min</div>
+            <div>Temp Max</div>
+            <div>Weather</div>
+          </DescriptionItem>
+          <ul className={classes.list}>
+            {weatherData.map((day) => (
+              <WeatherItem
+                key={day.dt}
+                date={day.dt}
+                weatherDesc={day.weather[0].description}
+                tempMin={day.temp.min}
+                tempMax={day.temp.max}
+              />
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <p>Loading</p>
+      )}
+    </Fragment>
   );
 };
 
